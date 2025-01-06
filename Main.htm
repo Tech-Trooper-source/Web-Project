@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco Crave</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #fafafa;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #4e342e;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .product-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .product-section .product-image {
+            width: 55%;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .product-section .product-info {
+            width: 40%;
+        }
+
+        .product-info h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #4e342e;
+        }
+
+        .product-info p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .price {
+            font-size: 1.8em;
+            color: #e67e22;
+            margin-bottom: 20px;
+        }
+
+        .btn-buy {
+            background-color: #e67e22;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.5em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-buy:hover {
+            background-color: #d35400;
+        }
+
+        .image-carousel {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .image-carousel img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .image-carousel img.active {
+            border: 3px solid #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .product-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-section .product-image,
+            .product-section .product-info {
+                width: 100%;
+            }
+
+            .image-carousel img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        .reviews-section {
+            background-color: #f9f9f9;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .reviews-section h2 {
+            font-size: 2.5em;
+            color: #4e342e;
+            margin-bottom: 20px;
+        }
+
+        .review-card {
+            background-color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 250px;
+        }
+
+        .review-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4e342e;
+            color: white;
+            margin-top: 40px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #3498db;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .cart-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="cart-counter" id="cart-count">0</div>
+
+    <header>
+        <h1>Choco Crave</h1>
+    </header>
+
+    <div class="container">
+        <div class="product-section">
+        
+            <div class="product-image">
+                <img id="main-image" src="mainImg.jpg" alt="Chocolate Bar Image" style="width:100%; height:auto;">
+            </div>
+
+            <div class="product-info">
+                <h2>Deluxe Chocolate Bar</h2>
+                <p>Indulge in our luxurious, handcrafted chocolate made with the finest cocoa beans. Each bar is infused with rich, smooth flavors, perfect for any chocolate lover. A must-try treat!</p>
+                <p class="price">$19.99</p>
+                <button class="btn-buy" onclick="addToCart()">Add to Cart</button>
+                <button class="btn-buy" onclick="buyNow()">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="image-carousel">
+            <img src="photo1.jpg" alt="Thumbnail 1" onclick="changeImage('photo1.jpg')">
+            <img src="photo2.jpg" alt="Thumbnail 2" onclick="changeImage('photo2.jpg')">
+            <img src="photo3.jpg" alt="Thumbnail 3" onclick="changeImage('photo3.jpg')">
+        </div>
+    </div>
+
+
+    <div class="reviews-section">
+        <h2>Customer Reviews</h2>
+        <div class="review-card">
+            <p>"Absolutely amazing! The chocolate is so delicious and smooth. Worth every penny!"</p>
+            <p class="reviewer-name">-Eka</p>
+        </div>
+        <div class="review-card">
+            <p>"A perfect gift for my chocolate-loving friend. She loved it!"</p>
+            <p class="reviewer-name">-Ved</p>
+        </div>
+        <div class="review-card">
+            <p>"The best chocolate bar I've ever had. I can't stop eating it!"</p>
+            <p class="reviewer-name">-Soha</p>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>Have questions? <a href="contactUs.htm" target="_blank">Contact Us</a> | <a href="learnMore.htm" target="_blank">Learn More</a></p>
+        <p>Follow us on social media: <a href="#">Facebook</a> | <a href="#">Instagram</a></p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        function changeImage(imageUrl) {
+            document.getElementById('main-image').src = imageUrl;
+
+            let images = document.querySelectorAll('.image-carousel img');
+            images.forEach(img => img.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function addToCart() {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+            alert("Added to Cart!");
+        }
+        function buyNow(){
+            alert("Thank You!")
+        }
+
+        function openLearnMore() {
+            window.open("https://chocolate-info", "_blank");
+        }
+
+        function openContact() {
+            window.open("https://www.example.com/contact-us", "_blank");
+        }
+    </script>
+</body>
+</html>
